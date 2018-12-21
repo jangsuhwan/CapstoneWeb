@@ -1,0 +1,37 @@
+{
+	"parts": [
+		{
+			"part": "garbage"
+		},
+		{
+			"part": "None"
+		},
+		{
+			"part": "LKnee / LHip"
+		},
+		{
+			"part": "Neck / LElbow / RElbow / LHip / RHip / MidHip"
+		},
+		{
+			"part": "Neck / RKnee / RHip / RAnckle"
+		},
+		{
+			"part": "Neck / RKnee / LKnee / RAnckle / LAnckle"
+		},
+		{
+			"part": "Neck"
+		},
+		{
+			"part": "Neck / RKnee"
+		},
+		{
+			"part": "Neck / RKnee / LKnee"
+		},
+		{
+			"part": "None"
+		},
+		{
+			"part": "Neck / RElbow / RHip"
+		}
+	]
+}

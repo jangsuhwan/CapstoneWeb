@@ -1,0 +1,236 @@
+{% extends 'base.html' %} {% block extra_head_content %}
+<link href="static/css/style.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+ {% endblock %}
+{% block content %}
+<style>
+@font-face {font-family:MalgunGothic; src:url(static/font/MalgunGothic.eot);}
+.malgun { font-family:'Malgun Gothic' !important; }
+</style>
+<script>
+   $(function() {
+   var parts = ['목', '왼쪽 어깨', '오른쪽 어깨', '왼쪽 무릎', '오른쪽 무릎', '왼쪽 팔', '오른쪽 팔'];
+   var dicEngKor = {'목':'neck', '왼쪽 어깨':'LShoulder', '오른쪽 어깨':'RShoulder', '왼쪽 무릎' : 'LKnee', '오른쪽 무릎':'RKnee', '왼쪽 팔' : 'LElbow', '오른쪽 팔':'RElbow'};
+  var people = [];
+  var partWrongCount = {}
+
+  var part;
+
+  $.getJSON('static/resultJson/result.json', function(data) {
+  	  var i = 1;
+      $.each(data.parts, function(i, f) {
+          var x = f.part+"<br>";
+          part = f.part;
+          var arr = part.split('/');
+          for(var j = 0; j < arr.length; j++){
+          $("."+(arr[j].trim())).show();
+          if(!(arr[j].trim() in partWrongCount)){
+          	partWrongCount[arr[j].trim()] = 1;
+          }else{
+          partWrongCount[arr[j].trim()]+=1;
+          }
+          }
+          for (const [key, value] of Object.entries(partWrongCount)) {
+			var va = value*10;
+          $('#'+key).css('width', va+'%').attr('aria-valuenow', va);
+
+    }
+
+          $('#box'+i).append("<h1>"+x+"</h1>");
+          i++;
+    });
+
+
+  });
+});
+</script>
+<header class="masthead" style="height: 200px;">
+
+<div class="overlay">
+</div>
+<div>
+	<div class="row">
+		<div class="col-lg-8 col-md-10 mx-auto">
+			<div class="site-heading" style=" padding-bottom: 50px; padding-top:60px; ">
+				<h1 style="font-size:63px; color : black; letter-spacing:4px">Check Your Body</h1>
+			</div>
+		</div>
+	</div>
+</div>
+</header>
+
+<div id="contents-area">
+	<div id="contents-inner">
+		<div class="left_pic">
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="20000">
+				<div class="carousel-inner" style="overflow:visible;">
+
+					<div class="carousel-cap">
+						<div class="line"></div>
+						<h1 style="font-size:40px; font-weight: bold; margin-top:20px;">Results</h1>
+
+					</div>
+
+					<div class="carousel-item active">
+						<div class="container">
+							<img class="pic" src="static/originalPictures/1.jpg" alt="Second slide">
+							<div class="overlay">
+								<img class="picture_overlay" src="static/processedPictures/result/1_rendered.png" />
+							</div>
+						</div>
+						<div class="carousel-cap1">
+							<h1 class = "wrongpart" id="box1"></h1>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="container">
+							<img class="pic" src="static/originalPictures/2.jpg" alt="Second slide">
+							<div class="overlay">
+								<img class="picture_overlay" src="static/processedPictures/result/2_rendered.png" />
+							</div>
+						</div>
+						<div class="carousel-cap1">
+							<div class = "wrongpart" id="box2"></div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="container">
+							<img class="pic" src="static/originalPictures/3.jpg" alt="Second slide">
+							<div class="overlay">
+								<img class="picture_overlay" src="static/processedPictures/result/3_rendered.png" />
+							</div>
+						</div>
+						<div class="carousel-cap1">
+							<div class = "wrongpart" id="box3"></div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="container">
+							<img class="pic" src="static/originalPictures/result/4.jpg" alt="Second slide">
+							<div class="overlay">
+								<img class="picture_overlay" src="static/processedPictures/4.jpg" />
+							</div>
+						</div>
+						<div class="carousel-cap1">
+							<div class = "wrongpart" id="box4"></div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="container">
+							<img class="pic" src="static/originalPictures/result/5.jpg" alt="Second slide">
+							<div class="overlay">
+								<img class="picture_overlay" src="static/processedPictures/5.jpg" />
+							</div>
+						</div>
+						<div class="carousel-cap1">
+							<div class = "wrongpart" id="box5"></div>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="container">
+							<img class="pic" src="static/originalPictures/result/6.jpg" alt="Second slide">
+							<div class="overlay">
+								<img class="picture_overlay" src="static/processedPictures/6.jpg" />
+							</div>
+						</div>
+						<div class="carousel-cap1">
+							<div class = "wrongpart" id="box6"></div>
+						</div>
+					</div>
+
+				</div>
+
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+
+					<br>
+					<br>
+				</ol>
+				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true" style=" width: 50px; height: 86px"></span>
+				<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true" style=" width: 50px; height: 86px"></span>
+				<span class="sr-only">Next</span>
+				</a>
+			</div>
+			<div class="as malgun">
+				<span style="text-align:center;">You</span>
+			</div>
+		</div>
+		<div class="right_pic">
+			<img class="pic" src="static/best.jpg"/>
+			<div class="as">
+				<span style="text-align:center;">Model</span>
+			</div>
+		</div>
+	</div>
+
+</div>
+<div class="divProgress" id = "pro">
+	<div class = "neck"  style="display:none">
+		<h2>목</h2>
+		 <div class="progress">
+		  <div class="progress-bar progress-bar-striped progress-bar-animated" id="neck" role="progressbar" aria-valuenow="0"
+		  aria-valuemin="0" aria-valuemax="100" style="width:0%">
+  </div>
+</div>
+			<br><br>
+</div>
+	<div class = "RShoulder"  style="display:none">
+		<h2>오른쪽 어깨</h2>
+		 <div class="progress">
+		  <div class="progress-bar progress-bar-striped progress-bar-animated" id = "RShoulder" role="progressbar" aria-valuenow="50"
+		  aria-valuemin="0" aria-valuemax="100" style="width:0%">
+  </div>
+</div>
+				<br><br>
+</div>
+
+	<div class = "LShoulder"style="display:none" >
+		<h2>왼쪽 어꺠</h2>
+		 <div class="progress">
+		  <div class="progress-bar progress-bar-striped progress-bar-animated" id = "LShoulder" role="progressbar" aria-valuenow="0"
+		  aria-valuemin="0" aria-valuemax="100" style="width:0%">
+  </div>
+</div>
+		<br><br>
+</div>
+
+	<div class = "RKnee"   style="display:none">
+		<h2>오른쪽 무릎</h2>
+		 <div class="progress">
+		  <div class="progress-bar progress-bar-striped progress-bar-animated" id = "RKnee" role="progressbar" aria-valuenow="0"
+		  aria-valuemin="0" aria-valuemax="100" style="width:0%">
+  </div>
+</div>
+		<br><br>
+</div>
+
+	<div class = "LKnee"  style="display:none">
+		<h2>왼쪽 무릎</h2>
+		 <div class="progress">
+		  <div class="progress-bar" id = "LKnee" role="progressbar" aria-valuenow="0"
+		  aria-valuemin="0" aria-valuemax="100" style="width:0%">
+  </div>
+</div>
+			<br><br>
+</div>
+	<div class = "LElbow"  style="display:none">
+		<h2>왼쪽 팔</h2>
+		 <div class="progress">
+		  <div class="progress-bar" id = "LElbow" role="progressbar" aria-valuenow="0"
+		  aria-valuemin="0" aria-valuemax="100" style="width:0%">
+  </div>
+</div>
+			<br><br>
+</div>
+	</div>
+	</div>
+{% endblock %}
